@@ -31,8 +31,8 @@ API Docs (Swagger):
 🔗 https://inkle-tourism-backend-0i9q.onrender.com/docs
 
 📁 Repository Structure
-bash
-Copy code
+
+
 inkle_tourism/
 │
 ├── backend/

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Inkle Tourism AI Assistant</title>
+</head>
+<body>
+  <h2>Inkle Tourism Multi-Agent System</h2>
+
+  <p>Try queries like:</p>
+  <ul>
+    <li>"I'm going to go to Bangalore, let's plan my trip."</li>
+    <li>"I'm going to go to Chennai, what is the temperature there?"</li>
+    <li>"I'm going to Delhi, what is the temperature and places to visit?"</li>
+  </ul>
+
+  <textarea id="query" rows="3" cols="60" placeholder="Type your query here..."></textarea><br><br>
+
+  <button onclick="sendQuery()">Ask</button>
+
+  <h3>Response:</h3>
+  <pre id="response" style="white-space: pre-wrap; font-size: 16px;"></pre>
+
+  <script>
+    async function sendQuery() {
+      const q = document.getElementById("query").value;
+      const out = document.getElementById("response");
+      
+      if (!q.trim()) {
+        out.textContent = "Please enter a query.";
+        return;
+      }
+
+      out.textContent = "Loading...";
+
+      try {
+        const res = await fetch("YOUR_BACKEND_URL/query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: q })
+        });
+
+        const data = await res.json();
+        out.textContent = data.response;
+      } catch (err) {
+        out.textContent = "Error connecting to the server.";
+      }
+    }
+  </script>
+</body>
+</html>
